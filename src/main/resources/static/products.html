@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products</title>
+</head>
+<body>
+  <h2>Products</h2>
+  <pre id="output"></pre>
+
+  <script>
+    async function loadProducts() {
+      const token = localStorage.getItem("jwt"); // ✅ Read from localStorage
+
+      if (!token) {
+        document.getElementById("output").innerText = "⚠️ No token found. Please log in again.";
+        return;
+      }
+
+      const res = await fetch("/products", {
+        headers: { "Authorization": "Bearer " + token }
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+      } else {
+        document.getElementById("output").innerText = "❌ Unauthorized (check token).";
+      }
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>
