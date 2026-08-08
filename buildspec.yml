@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+
+  pre_build:
+    commands:
+      - echo Running tests...
+
+  build:
+    commands:
+      - echo Building the application...
+      - ./mvnw clean package -DskipTests
+
+  post_build:
+    commands:
+      - echo Build completed successfully
+
+artifacts:
+  files:
+    - target/*.jar
