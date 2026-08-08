@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pkill -f 'java -jar' || true
+pkill -f 'ecomApp-0.0.1-SNAPSHOT.jar' || true
